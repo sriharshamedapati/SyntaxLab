@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+
+/* Base font adjustments for smaller screens */
+@media (max-width: 640px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .hero-bg::before {
+        width: 300%;
+        height: 300%;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    /* Tablet specific adjustments if needed */
+}

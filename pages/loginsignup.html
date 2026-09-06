@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SyntaxLab Authentication Portal</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+    <!-- WRAPPER: This new container handles the background and the perfect centering -->
+    <div class="neon-background-wrapper">
+        
+        <!-- Custom Message Box (for error/success simulation, replaces alert()) -->
+        <div id="message-box" class="fixed top-5 right-5 z-50 transition-transform duration-500 transform translate-x-full">
+            <div id="message-content" class="px-5 py-3 rounded-xl shadow-2xl max-w-sm"></div>
+        </div>
+
+        <!-- Login/Sign Up Card Container -->
+        <div id="auth-card" class="w-full max-w-md neon-card-bg backdrop-blur-sm rounded-3xl p-8 sm:p-10 shadow-2xl shadow-fuchsia-500/10 transition-all duration-500 relative z-20 mx-4">
+            
+            <!-- Logo and Title -->
+            <div class="text-center mb-8">
+                <a href="../index.html" class="flex items-center justify-center no-underline mb-3 text-white">
+                    <span class="text-3xl font-bold tracking-wider bg-gradient-to-r from-cyan-400 to-fuchsia-600 bg-clip-text text-transparent">SyntaxLab</span>
+                    <!-- Lightning Icon SVG -->
+                    <svg class="w-7 h-7 ml-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="lightningGradient" x1="4" y1="12" x2="20" y2="12" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4df3ff" />
+                                <stop offset="1" stop-color="#ff00cc" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M13 1.5L4 14H11L11 22.5L20 10H13L13 1.5Z" fill="url(#lightningGradient)" />
+                    </svg>
+                </a>
+                <h2 id="card-title" class="text-2xl font-bold text-gray-200 mt-4">Welcome Back</h2>
+                <p id="card-subtitle" class="text-gray-400 text-sm mt-1">Enter your details to continue.</p>
+            </div>
+
+            <!-- Toggle Buttons (Login/Sign Up) -->
+            <div class="flex bg-white/5 p-1 rounded-xl mb-8">
+                <button id="login-toggle" class="flex-1 font-medium py-2 px-3 rounded-xl transition-colors duration-300 text-gray-400 hover:text-white">
+                    Login
+                </button>
+                <button id="signup-toggle" class="flex-1 font-medium py-2 px-3 rounded-xl transition-colors duration-300 text-gray-400 hover:text-white">
+                    Sign Up
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form id="auth-form" class="space-y-6">
+                
+                <!-- Full Name Input (Visible in Sign Up mode) -->
+                <div id="full-name-field" class="hidden">
+                    <label for="fullName" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        class="w-full bg-gray-700/50 text-white p-3 rounded-xl border border-white/10 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition duration-300 placeholder-gray-500"
+                        placeholder="John Doe"
+                    />
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        class="w-full bg-gray-700/50 text-white p-3 rounded-xl border border-white/10 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition duration-300 placeholder-gray-500"
+                        placeholder="you@syntaxlab.com"
+                        required
+                    />
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        class="w-full bg-gray-700/50 text-white p-3 rounded-xl border border-white/10 focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 outline-none transition duration-300 placeholder-gray-500"
+                        placeholder="••••••••"
+                        required
+                    />
+                </div>
+
+                <!-- Error Message Display -->
+                <div id="error-message" class="hidden p-3 text-sm font-medium text-red-300 bg-red-900/40 border border-red-700/50 rounded-lg">
+                    <!-- Error content goes here -->
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    id="submit-button"
+                    class="w-full px-6 py-3 rounded-xl font-semibold cursor-pointer transition-all duration-300 transform active:scale-95 shadow-lg shadow-cyan-500/40 text-gray-950 bg-gradient-to-r from-cyan-400 to-fuchsia-600 hover:shadow-xl hover:shadow-cyan-400/50 flex items-center justify-center relative"
+                >
+                    Login Securely
+                </button>
+            </form>
+
+            <!-- Footer Link -->
+            <p id="footer-link" class="text-center text-sm text-gray-500 mt-6">
+                <a href="#" class="text-cyan-400 hover:text-fuchsia-400 transition-colors duration-200">
+                    Forgot Password?
+                </a>
+            </p>
+        </div>
+    </div>
+
+    
+  <!-- Common JS -->
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

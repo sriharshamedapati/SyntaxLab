@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyntaxLab ⚡ | About Us</title>
+  <meta name="description" content="Discover SyntaxLab — AI-powered coding education, innovation, and learning reimagined.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body class="antialiased">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <a href="afterloginhome.html" class="text-3xl font-extrabold logo-gradient">SyntaxLab ⚡</a>
+
+      <div class="hidden lg:flex space-x-6 text-gray-400 font-medium">
+        <a href="afterloginhome.html" class="hover:text-white">Home</a>
+        <a href="courses.html" class="hover:text-white">Courses</a>
+        <a href="userdashboard.html" class="hover:text-white">Profile</a>
+        <a href="AIzonehome.html" class="hover:text-white">AI Zone</a>
+        <a href="learnwithfun.html" class="hover:text-white transition-colors duration-200">Learn With Fun</a>
+        <a href="aboutus.html" class="hover:text-white">About</a>
+      </div>
+
+      <a href="../index.html" class="px-6 py-2 rounded-full text-white btn-gradient font-semibold hidden lg:inline">Logout</a>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="lg:hidden text-white">
+        <span data-lucide="menu" class="w-6 h-6"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="menu" class="hidden flex-col space-y-3 mt-4 px-4 pb-4 text-gray-300 lg:hidden">
+      <a href="afterloginhome.html" class="hover:text-white">Home</a>
+      <a href="courses.html" class="hover:text-white">Courses</a>
+      <a href="userdashboard.html" class="hover:text-white">Profile</a>
+      <a href="AIzonehome.html" class="hover:text-white">AI Zone</a>
+      <a href="aboutus.html" class="hover:text-white">About</a>
+      <a href="../index.html" class="px-6 py-2 rounded-full text-white btn-gradient font-semibold">Logout</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden pt-32 pb-48 text-center">
+    <div class="hero-bg"></div>
+    <div class="relative max-w-5xl mx-auto px-4 reveal">
+      <h1 class="text-6xl sm:text-8xl font-extrabold mb-8 leading-none animate-pulse">
+        Discover <span class="logo-gradient">SyntaxLab</span>
+      </h1>
+      <p class="text-2xl text-gray-300 mb-10 max-w-4xl mx-auto">
+        Revolutionizing coding education with AI-powered tools, interactive challenges, and personalized learning paths.
+      </p>
+      <a href="#mission" class="btn-gradient px-8 py-4 rounded-full text-lg font-bold text-white">Explore Our Story</a>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section id="mission" class="max-w-7xl mx-auto px-4 py-20 reveal">
+    <h2 class="text-5xl font-extrabold text-center mb-16 logo-gradient">Our Journey</h2>
+    <div class="space-y-12">
+      <div class="timeline-item p-8 bg-gray-800 rounded-2xl card-glow">
+        <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
+        <p class="text-gray-300 text-lg">
+          To democratize tech education. Leveraging Power Platform and AI, SyntaxLab builds immersive learning experiences that transform beginners into confident coders and AI creators.
+        </p>
+      </div>
+      <div class="timeline-item p-8 bg-gray-800 rounded-2xl card-glow">
+        <h3 class="text-3xl font-bold mb-4">Our Vision</h3>
+        <p class="text-gray-300 text-lg">
+          We envision a world where technology empowers everyone. With support from Aditya University and Google Cloud, SyntaxLab bridges academia with real-world innovation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="max-w-7xl mx-auto px-4 py-20 reveal">
+    <h2 class="text-5xl font-extrabold text-center mb-16 logo-gradient">Our Dynamic Team</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" id="team-container">
+      <!-- JS will populate team members here -->
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="max-w-7xl mx-auto px-4 py-20 reveal">
+    <h2 class="text-5xl font-extrabold text-center mb-16 logo-gradient">Our Esteemed Partners</h2>
+    <div class="grid md:grid-cols-3 gap-8 justify-center">
+      <div class="p-10 bg-gray-800 rounded-2xl card-glow flex flex-col items-center">
+        <img src="https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png"
+             alt="Google Cloud" class="h-20 mb-6">
+        <p class="text-gray-300 text-center">Powering our AI infrastructure and cloud ecosystem for seamless learning.</p>
+      </div>
+      <div class="p-10 bg-gray-800 rounded-2xl card-glow flex flex-col items-center">
+        <img src="https://www.openeducationportal.com/wp-content/uploads/2025/01/Aditya-University-1024x630.webp"
+             alt="Aditya University" class="h-28 mb-6">
+        <p class="text-gray-300 text-center">Academic backbone fueling next-gen educational innovation.</p>
+      </div>
+      <div class="p-10 bg-gray-800 rounded-2xl card-glow flex flex-col items-center">
+        <img src="https://myprofile.technicalhub.io:45/duty/images/icon/logo.png"
+             alt="Technical Hub" class="h-20 mb-6">
+        <p class="text-gray-300 text-center">Academic backbone fueling next-gen educational innovation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="text-center py-20 bg-gray-900 border-t border-gray-800 reveal">
+    <h2 class="text-5xl font-extrabold mb-8 logo-gradient">Let's Connect</h2>
+    <p class="text-lg text-gray-400 mb-10">Have ideas, collaborations, or questions? We’d love to hear from you!</p>
+    <a href="mailto:karthik.borra524@gmail.com" class="btn-gradient px-8 py-4 rounded-full text-lg font-semibold text-white">Contact Us</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 border-t border-gray-800 py-12">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Platform</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="afterloginhome.html" class="hover:text-cyan-400">Home</a></li>
+          <li><a href="courses.html" class="hover:text-cyan-400">Courses</a></li>
+          <li><a href="AIzonehome.html" class="hover:text-cyan-400">AI Zone</a></li>
+          <li><a href="userdashboard.html" class="hover:text-cyan-400">Profile</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Company</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="aboutus.html" class="hover:text-cyan-400">About Us</a></li>
+          <li><a href="#" class="hover:text-cyan-400">Contact</a></li>
+          <li><a href="#" class="hover:text-cyan-400">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Legal</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="#" class="hover:text-cyan-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-cyan-400">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Connect</h4>
+        <div class="flex space-x-4">
+          <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white transform hover:scale-110"><span data-lucide="github" class="w-6 h-6"></span></a>
+          <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transform hover:scale-110"><span data-lucide="linkedin" class="w-6 h-6"></span></a>
+          <a href="https://youtube.com" target="_blank" class="text-gray-400 hover:text-white transform hover:scale-110"><span data-lucide="youtube" class="w-6 h-6"></span></a>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-10">© 2025 SyntaxLab. All Rights Reserved.</p>
+  </footer>
+
+  <button id="scrollTopBtn">↑ Top</button>
+
+  <script>
+    lucide.createIcons();
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      revealElements.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (revealTop < windowHeight - revealPoint) el.classList.add("active");
+      });
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
+    menuBtn.addEventListener("click", () => menu.classList.toggle("hidden"));
+
+    // Scroll to Top button
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", ()=>{
+      if(document.body.scrollTop > 400 || document.documentElement.scrollTop > 400){
+        scrollBtn.style.display = "block";
+      } else { scrollBtn.style.display = "none"; }
+    });
+    scrollBtn.addEventListener("click", ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Team members
+    const teamMembers = [
+      {name:"Harsha", role:"AI Integration Specialist", desc:"Developed AIZone, AI-based quizzes, AI roadmap generator, and chatbot.", link:"#", text:"Linkedin →"},
+      {name:"Karthik", role:"Lead UI/Frontend Designer & Integration Specialist", desc:"Designed dynamic frontend pages and integrated Firebase and Gemini AI.", link:"#", text:"LinkedIn →"},
+      {name:"Bhagya", role:"Dashboard Engineer", desc:"Built the dashboard to track user stats and maintain smooth functionality.", link:"#", text:"Linkedin →"},
+      {name:"Sarika Reddy", role:"Database Engineer & XP Logic Developer", desc:"Managed courses and quizzes in Firebase and created XP distribution logic.", link:"#", text:"Linkedin →"},
+      {name:"Abhi", role:"Backend & Authentication Developer", desc:"Implemented login/signup authentication, hosted the website, and created the interactive coding game.", link:"https://www.linkedin.com/in/abhishekkumarpyla5/", text:"LinkedIn →"},
+      {name:"Sagarika", role:"Data Research Analyst", desc:"Collected and curated course and quiz data for a user-friendly learning experience.s", link:"#", text:"LinkedIn →"}
+    ];
+
+    const teamContainer = document.getElementById("team-container");
+    teamMembers.forEach(member => {
+      const firstLetter = member.name.charAt(0).toUpperCase();
+      const div = document.createElement("div");
+      div.className = "team-card p-8 bg-gray-800 rounded-2xl card-glow text-center relative overflow-hidden";
+      div.innerHTML = `
+        <div class="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-cyan-400 shadow-lg flex items-center justify-center text-4xl font-bold bg-gray-700 text-white">
+          ${firstLetter}
+        </div>
+        <h3 class="text-2xl font-bold mb-2">${member.name}</h3>
+        <p class="text-gray-400 text-lg">${member.role}</p>
+        <div class="overlay">
+          <p class="text-sm text-gray-200 mb-3">${member.desc}</p>
+          <a href="${member.link}" class="text-cyan-400 hover:underline">${member.text}</a>
+        </div>
+      `;
+      teamContainer.appendChild(div);
+    });
+  </script>
+
+  <!-- Common JS -->
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

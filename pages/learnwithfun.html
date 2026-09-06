@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SyntaxLab – Code Dino Extreme (Cyan-Pink)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+<body>
+
+<!-- ========= Sticky Tailwind Navbar ========= -->
+<header class="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800 w-full">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <a href="afterloginhome.html" class="text-3xl font-extrabold logo-gradient">SyntaxLab ⚡</a>
+    <div class="hidden lg:flex space-x-6 text-gray-400 font-medium">
+      <a href="afterloginhome.html" class="hover:text-white">Home</a>
+      <a href="courses.html" class="hover:text-white">Courses</a>
+      <a href="userdashboard.html" class="hover:text-white">Profile</a>
+      <a href="AIzonehome.html" class="hover:text-white">AI Zone</a>
+      <a href="learnwithfun.html" class="hover:text-white transition-colors duration-200">Learn With Fun</a>
+      <a href="aboutus.html" class="hover:text-white">About</a>
+    </div>
+    <button id="logoutBtn" class="px-6 py-2 rounded-full font-semibold btn-gradient">Logout</button>
+  </nav>
+</header>
+
+<!-- ========= Main App Container (Game + UI) ========= -->
+<div class="container" role="application" aria-label="SyntaxLab Code Dino Extreme">
+  <header class="app-header">
+    <h1>SyntaxLab – Code Dino Extreme</h1>
+    <div class="meta">
+      <div class="hint">Up ▲ opens question • Space / tap to jump</div>
+    </div>
+  </header>
+
+  <section class="game-area">
+    <div class="canvas-wrapper" aria-hidden="false">
+      <div class="overlay-top">
+        <div class="score-pill" id="overlayScore">Score: 0</div>
+      </div>
+      <div class="controls">
+        <button id="startBtn" class="primary">Start</button>
+        <button id="restartQuick">Reset</button>
+      </div>
+
+      <canvas id="gameCanvas" width="900" height="280" aria-label="Game canvas"></canvas>
+      <div class="particles" id="particles"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h3>Status</h3>
+        <div class="stat"><span>Game</span><span id="gameStatus">Ready</span></div>
+        <div class="stat"><span>Score</span><span id="scoreDisplay">0</span></div>
+        <div class="stat"><span>High</span><span id="highScore">0</span></div>
+        <div class="stat"><span>Level</span><span id="level">1</span></div>
+        <div class="stat"><span>Speed</span><span id="speedDisplay">0.22</span></div>
+        <div class="stat"><span>Difficulty</span><span id="difficultyDisplay">0.00</span></div>
+        <div class="hint" style="margin-top:8px">Answer questions to jump. Correct = jump + score. Wrong reduces difficulty.</div>
+      </div>
+
+      <div class="card">
+        <h3>Question Breakdown</h3>
+        <div class="hint"><strong>Easy</strong> — fundamentals • <strong>Medium</strong> — logic • <strong>Hard</strong> — edge cases • <strong>Expert</strong> — tricky</div>
+      </div>
+
+      <div class="card">
+        <h3>Languages</h3>
+        <div class="hint">Python · JavaScript · C · Java · SQL · HTML · CSS</div>
+      </div>
+    </aside>
+  </section>
+
+  <footer class="footer">A <strong>SyntaxLab</strong> project — made with ❤ and coffee.</footer>
+</div>
+
+<!-- ========= Question Modal ========= -->
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="question-title" id="qtitle">Question</div>
+    <div class="qmeta">
+      <div>Type: <span id="qtype"></span></div>
+      <div>Lang: <span id="qlang"></span></div>
+      <div>Difficulty: <span id="qdifficulty"></span></div>
+    </div>
+
+    <div class="qtext" id="qtext"></div>
+    <div class="options" id="optionsContainer"></div>
+
+    <div class="input-group" id="textInputGroup" style="display:none">
+      <input id="answerInput" type="text" placeholder="Your answer…" autocomplete="off">
+      <button id="submitAnswer">Submit</button>
+    </div>
+
+    <div class="result" id="resultMessage"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:12px;gap:8px">
+      <button id="closeModal">Close (Wrong)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========= Game Over Modal ========= -->
+<div class="modal-backdrop" id="gameOverModalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div style="text-align:center">
+      <h2 style="color:var(--pink)">Game Over</h2>
+      <p style="font-weight:700">Final Score: <span id="finalScoreDisplay">0</span></p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:12px">
+        <button id="restartGameBtn" class="primary">Play Again</button>
+        <button id="finishGameBtn" class="primary">Finish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========= Game JS (quiz, spawn, draw, modal, UI) ========= -->
+<script>
+/* ================== CONFIG ================== */
+const CONFIG = {
+  canvasW:900, canvasH:280, groundY:220,
+  initialSpeed:0.22, spawnInterval:2000, triggerDistance:200,
+  gravity:0.0022, jumpStrength:-0.75, scorePerCorrect:25,
+  coinChance:0.18, difficultyIncrement:0.25, difficultyDecrement:0.4,
+  maxDifficulty:3.5, minDifficulty:0, parallaxSpeed:{layer0:0.02,layer1:0.06,layer2:0.12}
+};
+
+/* =================== QUESTIONS (static pool) =================== */
+const QUESTIONS = [
+  {id:'q1',type:'fill',lang:'python',difficulty:0,q:'Which method adds an item to the end of a Python list?','a':'append'},
+  {id:'q2',type:'mcq',lang:'js',difficulty:0,q:'Which keyword creates a block-scoped variable in JavaScript?',options:['var','let','function'],a:1},
+  {id:'q3',type:'fill',lang:'c',difficulty:0,q:'The C operator to get the address of a variable is ___','a':'&'},
+  {id:'q4',type:'mcq',lang:'html',difficulty:0,q:'Which tag creates a paragraph?',options:['<div>','<p>','<span>'],a:1},
+  {id:'q5',type:'output',lang:'python',difficulty:0,q:'What prints: print(2 * (3 + 4))',a:'14'},
+  {id:'q6',type:'mcq',lang:'sql',difficulty:1,q:'Which SQL clause filters rows after aggregation?',options:['WHERE','GROUP BY','HAVING'],a:2},
+  {id:'q7',type:'fill',lang:'java',difficulty:1,q:'In Java, the keyword to inherit a class is ___.','a':'extends'},
+  {id:'q8',type:'mcq',lang:'js',difficulty:1,q:'Which array method returns a new array with elements that pass a test?',options:['forEach','filter','map'],a:1},
+  {id:'q9',type:'error',lang:'python',difficulty:1,q:"Find the error: def foo():\n print('hi')\n  print('bad')",a:"Indentation error"},
+  {id:'q10',type:'mcq',lang:'c',difficulty:2,q:'Which of these is undefined behavior in C?',options:['Accessing freed memory','Using int','Printing text'],a:0},
+  {id:'q11',type:'fill',lang:'js',difficulty:2,q:'The strict equality operator in JavaScript is ___.','a':'==='},
+  {id:'q12',type:'mcq',lang:'python',difficulty:2,q:'Which construct creates an anonymous function in Python?',options:['lambda','def','fun'],a:0},
+  {id:'q13',type:'mcq',lang:'java',difficulty:2,q:'Which collection allows duplicate elements?',options:['Set','List','Map'],a:1},
+  {id:'q14',type:'mcq',lang:'js',difficulty:3,q:'Which JS feature allows asynchronous iteration?',options:['for...of','for await...of','forEach'],a:1},
+  {id:'q15',type:'fill',lang:'python',difficulty:3,q:'In Python 3, to open a file for binary write use ___ mode.','a':'wb'},
+  {id:'q16',type:'output',lang:'js',difficulty:3,q:'What is the output: console.log(1+"2"+3)?',a:'123'},
+  {id:'q17',type:'error',lang:'c',difficulty:3,q:'Explain the problem: int *p; *p = 5; (without allocation)',a:'Dereferencing uninitialized pointer'},
+  {id:'q18',type:'mcq',lang:'sql',difficulty:2,q:'Which SQL join returns all rows from left table and matched from right?',options:['INNER JOIN','LEFT JOIN','RIGHT JOIN'],a:1},
+  {id:'q19',type:'fill',lang:'html',difficulty:0,q:'HTML: Tag to make text bold is ___.','a':'strong'},
+  {id:'q20',type:'mcq',lang:'css',difficulty:1,q:'Which property changes font size?',options:['font-weight','font-size','line-height'],a:1}
+];
+
+/* ====================== UI Refs ====================== */
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = CONFIG.canvasW; canvas.height = CONFIG.canvasH;
+const overlayScore = document.getElementById('overlayScore');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const highScoreEl = document.getElementById('highScore');
+const levelEl = document.getElementById('level');
+const speedEl = document.getElementById('speedDisplay');
+const statusEl = document.getElementById('gameStatus');
+const difficultyDisplay = document.getElementById('difficultyDisplay');
+const startBtn = document.getElementById('startBtn');
+const restartQuick = document.getElementById('restartQuick');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const qtitle = document.getElementById('qtitle');
+const qtypeEl = document.getElementById('qtype');
+const qlangEl = document.getElementById('qlang');
+const qdifficultyEl = document.getElementById('qdifficulty');
+const qtext = document.getElementById('qtext');
+const optionsContainer = document.getElementById('optionsContainer');
+const answerInput = document.getElementById('answerInput');
+const textInputGroup = document.getElementById('textInputGroup');
+const submitAnswer = document.getElementById('submitAnswer');
+const closeModal = document.getElementById('closeModal');
+const particlesRoot = document.getElementById('particles');
+const gameOverModalBackdrop = document.getElementById('gameOverModalBackdrop');
+const finalScoreDisplay = document.getElementById('finalScoreDisplay');
+const restartGameBtn = document.getElementById('restartGameBtn');
+const resultMessage = document.getElementById('resultMessage');
+
+/* =================== persistent highscore =================== */
+let highScore = Number(localStorage.getItem('syntaxlab_highscore_extreme') || 0);
+highScoreEl.innerText = highScore;
+
+/* =================== runtime state =================== */
+let score = 0, speed = CONFIG.initialSpeed, level = 1, lastSpawn = 0;
+let obstacles = [], coins = [], isRunning = false, isPausedForQuestion = false, gameOver = false;
+let currentQuestion = null, currentQuestionObstacle = null;
+let questionPool = [];
+let currentDifficulty = 0; 
+let difficultyBias = 0;
+let lastTs = 0;
+
+/* =============== dino =============== */
+const dino = {
+  x:64, width:34, height:36, y:CONFIG.groundY-36, vy:0, onGround:true, color:'#2be7f2',
+  draw(ctx){
+    ctx.fillStyle=this.color; ctx.fillRect(this.x,this.y,this.width,this.height);
+    ctx.fillStyle='#0b0b12'; ctx.fillRect(this.x+20,this.y-8,14,10);
+    ctx.fillStyle='#fff'; ctx.fillRect(this.x+26,this.y-4,4,4);
+  },
+  jump(){if(this.onGround){this.vy=CONFIG.jumpStrength; this.onGround=false}},
+  update(delta){this.vy+=CONFIG.gravity*delta; this.y+=this.vy*delta; if(this.y>=CONFIG.groundY-this.height){this.y=CONFIG.groundY-this.height; this.vy=0; this.onGround=true}}
+};
+
+/* ================== Obstacles & Coins ================== */
+function spawnObstacle(){const h=22+Math.random()*52; const w=14+Math.random()*28; obstacles.push({x:canvas.width+20,y:CONFIG.groundY-h,width:w,height:h,speed:speed,triggeredQuestion:false,id:Date.now()+Math.random(),color:Math.random()<0.5?CONFIG.cyan:'#ff61c9'});}
+function spawnCoin(){const size=10; coins.push({x:canvas.width+20,y:CONFIG.groundY-60-Math.random()*40,width:size,height:size,speed:speed,collected:false,id:Date.now()+Math.random(),color:'#FFD566'});}
+function spawnObstacleOrCoin(){Math.random()<CONFIG.coinChance?spawnCoin():spawnObstacle();}
+
+/* ================== Question Pool ================== */
+function refillPool(){questionPool = QUESTIONS.map(q=>({...q})); shuffleArray(questionPool);}
+function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+
+function pickRandomQuestion(){
+  if(!questionPool.length) refillPool();
+  const candidates = questionPool.filter(q=>Math.abs(q.difficulty - Math.round(currentDifficulty))<=1);
+  const pool = candidates.length?candidates:questionPool; 
+  const idx=Math.floor(Math.random()*pool.length); 
+  const q=pool[idx]; 
+  questionPool = questionPool.filter(x=>x.id!==q.id); 
+  return q; 
+}
+
+/* ================== Modal Handling ================== */
+function showQuestionModalFor(obstacle){
+  if(isPausedForQuestion||!obstacle) return;
+  isPausedForQuestion=true; currentQuestionObstacle=obstacle; currentQuestion=pickRandomQuestion();
+  modalBackdrop.classList.add('show'); modalBackdrop.setAttribute('aria-hidden','false');
+  qtitle.innerText='Question'; qtypeEl.innerText=(currentQuestion.type||'').toUpperCase();
+  qlangEl.innerText=(currentQuestion.lang||'').toUpperCase();
+  qdifficultyEl.innerText=['EASY','MEDIUM','HARD','EXPERT'][Math.floor(currentQuestion.difficulty)];
+  qtext.innerText=currentQuestion.q||''; resultMessage.innerHTML=''; optionsContainer.innerHTML=''; answerInput.value='';
+  textInputGroup.style.display='none';
+  if(currentQuestion.type==='mcq'){
+    currentQuestion.options.forEach((opt,i)=>{
+      const btn=document.createElement('button');
+      btn.className='option-btn'; btn.textContent=opt; btn.onclick=()=>selectMCQ(i);
+      optionsContainer.appendChild(btn);
+    });
+  } else { textInputGroup.style.display='flex'; answerInput.focus(); }
+  statusEl.innerText='Answer the question';
+}
+
+function hideQuestionModal(){isPausedForQuestion=false; modalBackdrop.classList.remove('show'); modalBackdrop.setAttribute('aria-hidden','true'); currentQuestion=null; currentQuestionObstacle=null; statusEl.innerText='Running'}
+
+/* ================== Answer Handling ================== */
+function selectMCQ(idx){
+  const correct = currentQuestion?.a;
+  if(correct===undefined){wrongAnswerFlow('?');return;}
+  Array.from(optionsContainer.children).forEach((btn,i)=>{
+    btn.classList.remove('correct','wrong');
+    if(i===correct) btn.classList.add('correct');
+    else if(i===idx) btn.classList.add('wrong');
+  });
+  idx===correct?correctAnswerFlow():wrongAnswerFlow(currentQuestion.options[correct]);
+}
+
+function handleTextAnswer(){
+  if(!currentQuestion) return;
+  const user = answerInput.value.trim().toLowerCase();
+  if(!user) return;
+  const correct = String(currentQuestion.a||'').toLowerCase();
+  const norm=s=>s.replace(/\s+/g,' ').replace(/[;,.!?]+$/,'').trim();
+  norm(user)===norm(correct)?correctAnswerFlow():wrongAnswerFlow(currentQuestion.a);
+}
+
+function correctAnswerFlow(){
+  score += CONFIG.scorePerCorrect + Math.floor(currentDifficulty)*10;
+  dino.vy=CONFIG.jumpStrength; dino.onGround=false;
+  if(currentQuestionObstacle) obstacles = obstacles.filter(o=>o.id!==currentQuestionObstacle.id);
+  currentQuestionObstacle = null;
+  difficultyBias = Math.min(CONFIG.maxDifficulty,difficultyBias + CONFIG.difficultyIncrement);
+  updateDifficultyDisplay(); 
+  resultMessage.innerHTML = '<span style="color:var(--cyan);font-weight:800">Correct! +'+CONFIG.scorePerCorrect+' pts</span>';
+  setTimeout(hideQuestionModal,550);
+}
+
+function wrongAnswerFlow(correctText){
+  difficultyBias = Math.max(CONFIG.minDifficulty,difficultyBias - CONFIG.difficultyDecrement);
+  updateDifficultyDisplay();
+  resultMessage.innerHTML = '<span style="color:var(--pink);font-weight:800">Wrong — Correct: <strong>'+escapeHtml(String(correctText))+'</strong></span>';
+  setTimeout(hideQuestionModal,900);
+}
+
+/* ================== Main Loop ================== */
+function loop(ts){
+  if(!lastTs) lastTs=ts; const delta = ts-lastTs; lastTs=ts;
+  if(gameOver){draw(); requestAnimationFrame(loop); return;}
+  if(isRunning && !isPausedForQuestion){
+    lastSpawn += delta;
+    const currentSpawnInterval = Math.max(650, CONFIG.spawnInterval - (level * 90));
+    if(lastSpawn > currentSpawnInterval){ spawnObstacleOrCoin(); lastSpawn=0; }
+    dino.update(delta);
+    obstacles.forEach(o=>o.x -= o.speed*delta);
+    obstacles = obstacles.filter(o=>o.x + o.width > -50);
+    coins.forEach(c=>c.x -= c.speed*delta);
+    coins = coins.filter(c=>c.x+c.width>-50 && !c.collected);
+
+    // Level Up
+    if(score >= level*300){ level++; speed = CONFIG.initialSpeed + level*0.06; currentDifficulty = Math.min(CONFIG.maxDifficulty, currentDifficulty+0.35); updateDifficultyDisplay(); updateLevelUI(); }
+
+    // Question trigger
+    for(let o of obstacles){ 
+      if(!o.triggeredQuestion && (o.x - dino.x) <= CONFIG.triggerDistance && (o.x - dino.x)>0){ 
+        o.triggeredQuestion = true; showQuestionModalFor(o); break;
+      }
+    }
+
+    // Collisions
+    for(let o of obstacles){ if(rectIntersect(dino.x,dino.y,dino.width,dino.height,o.x,o.y,o.width,o.height)){ endGame('Crashed'); return; } }
+
+    // Coins
+    for(let i=coins.length-1;i>=0;i--){ const c=coins[i]; if(rectIntersect(dino.x,dino.y,dino.width,dino.height,c.x,c.y,c.width,c.height)){ score+=5; c.collected=true; coins.splice(i,1);} }
+  }
+
+  updateScoreUI(); updateSpeedUI(); updateLevelUI(); draw(); requestAnimationFrame(loop);
+}
+
+/* ================== Drawing ================== */
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  // ground
+  ctx.fillStyle='#14102a'; ctx.fillRect(0,CONFIG.groundY,canvas.width,canvas.height-CONFIG.groundY);
+  dino.draw(ctx);
+  obstacles.forEach(o=>{ ctx.fillStyle=o.color; ctx.fillRect(o.x,o.y,o.width,o.height); });
+  coins.forEach(c=>{ ctx.fillStyle=c.color; ctx.beginPath(); ctx.arc(c.x+c.width/2,c.y+c.height/2,c.width/2,0,Math.PI*2); ctx.fill(); });
+}
+
+/* ================== Helpers ================== */
+function rectIntersect(x1,y1,w1,h1,x2,y2,w2,h2){ return !(x2>x1+w1 || x2+w2<x1 || y2>y1+h1 || y2+h2<y1); }
+function escapeHtml(unsafe){return String(unsafe).replace(/[&<"'>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+
+/* ================== UI Updates ================== */
+function updateScoreUI(){scoreDisplay.innerText=score; overlayScore.innerText=score; if(score>highScore){highScore=score; localStorage.setItem('syntaxlab_highscore_extreme',highScore); highScoreEl.innerText=highScore;}}
+function updateLevelUI(){levelEl.innerText=level;}
+function updateSpeedUI(){speedEl.innerText=speed.toFixed(2);}
+function updateDifficultyDisplay(){difficultyDisplay.innerText=currentDifficulty.toFixed(2);}
+
+/* ================== Game Controls ================== */
+function startGame() {
+  gameOver = false;
+  isRunning = true;
+  isPausedForQuestion = false;
+  score = 0;
+  speed = CONFIG.initialSpeed;
+  level = 1;
+  currentDifficulty = 0;
+  difficultyBias = 0;
+  updateScoreUI();
+  updateLevelUI();
+  updateSpeedUI();
+  updateDifficultyDisplay();
+  obstacles = [];
+  coins = [];
+  refillPool();
+  lastTs = 0;
+  statusEl.innerText = 'Running';
+}
+
+function endGame(reason){
+  isRunning=false; gameOver=true; statusEl.innerText='Game Over: '+reason;
+  finalScoreDisplay.innerText=score;
+  gameOverModalBackdrop.classList.add('show');
+}
+
+/* ================== Event Listeners ================== */
+document.addEventListener('keydown',e=>{if(e.code==='Space'||e.code=='ArrowUp'){ dino.jump(); }});
+startBtn.addEventListener('click', () => {
+  startGame();
+  gameOverModalBackdrop.classList.remove('show');
+  requestAnimationFrame(loop);
+});
+
+restartQuick.addEventListener('click', () => {
+  startGame();
+  gameOverModalBackdrop.classList.remove('show');
+  requestAnimationFrame(loop);
+});
+
+restartGameBtn.addEventListener('click', () => {
+  startGame();
+  gameOverModalBackdrop.classList.remove('show');
+  requestAnimationFrame(loop);
+});
+
+const finishGameBtn = document.getElementById('finishGameBtn');
+finishGameBtn.addEventListener('click', () => {
+  gameOver = true;
+  isRunning = false;
+  gameOverModalBackdrop.classList.remove('show');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  statusEl.innerText = 'Game Finished. Thanks for playing!';
+});
+
+submitAnswer.addEventListener('click',handleTextAnswer);
+answerInput.addEventListener('keydown',e=>{if(e.key=='Enter') handleTextAnswer();});
+closeModal.addEventListener('click',hideQuestionModal);
+
+/* ================== Init ================== */
+refillPool();
+requestAnimationFrame(loop);
+
+/* ========== Simple particles (visual only) ========== */
+(function initParticles(){
+  const root = particlesRoot;
+  for(let i=0;i<30;i++){
+    const p = document.createElement('div');
+    p.style.position='absolute'; p.style.width='4px'; p.style.height='4px';
+    p.style.left=Math.random()*100+'%'; p.style.top=Math.random()*100+'%'; p.style.opacity='0.06';
+    p.style.borderRadius='50%'; p.style.background='linear-gradient(90deg,#2be7f2,#ff61c9)';
+    root.appendChild(p);
+  }
+})();
+</script>
+
+<!-- ========= Common JS ========= -->
+<script type="module" src="../js/firebase-config.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+
+</body>
+</html>

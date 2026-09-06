@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyntaxLab ⚡ | Learn. Code.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="afterloginhome.html" class="text-3xl font-extrabold logo-gradient tracking-tight">
+                SyntaxLab ⚡
+            </a>
+            
+            <!-- Desktop Links (Updated for logged-in state) -->
+            <div class="hidden lg:flex space-x-6 text-gray-400 font-medium">
+                <a href="afterloginhome.html" class="hover:text-white transition-colors duration-200">Home</a>
+                <a href="courses.html" class="hover:text-white transition-colors duration-200">Courses</a>
+                <a href="userdashboard.html" class="hover:text-white transition-colors duration-200">Profile</a>
+                <a href="AIzonehome.html" class="hover:text-white transition-colors duration-200">AI Zone</a>
+                <a href="learnwithfun.html" class="hover:text-white transition-colors duration-200">Learn With Fun</a>
+                <a href="aboutus.html" class="hover:text-white transition-colors duration-200">About</a>
+            </div>
+
+            <!-- Logout Button -->
+            <a href="#" id="logoutBtn" class="px-6 py-2 rounded-full font-semibold text-white transition-all duration-300 btn-gradient">
+                Logout
+            </a>
+            
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative overflow-hidden pt-24 pb-32 lg:pt-32 lg:pb-48 text-center">
+            <div class="hero-bg"></div>
+            <div class="relative max-w-4xl mx-auto px-4 reveal">
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter leading-tight">
+                    Learn Code with <span class="logo-gradient block sm:inline">SyntaxLab</span> 
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                    Master Python, C, and Java — integrated with cutting-edge cloud & AI concepts for modern development.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#courses" class="px-8 py-3 rounded-full font-bold text-lg text-white btn-gradient transform hover:scale-105">
+                        Start Learning
+                    </a>
+                    <a href="userdashboard.html" class="px-8 py-3 rounded-full font-bold text-lg border-2 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section (UPDATED) -->
+        <section id="courses" class="py-20 lg:py-32 bg-gray-900 border-t border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-center mb-16 reveal">
+                    Our Core Curriculum
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8 reveal">
+                    <!-- Python Card -->
+                    <div class="p-8 rounded-xl bg-gray-800 card-glow transition duration-300 transform">
+                        <!-- REPLACED EMOJI WITH LUCIDE ICON -->
+                        <span data-lucide="code-2" class="w-10 h-10 text-green-400 mx-auto mb-4"></span>
+                        <h3 class="text-2xl font-bold mb-3">Python Development</h3>
+                        <p class="text-gray-400 mb-6">
+                            Learn Python from scratch. Build web apps, analyze data, and explore AI.
+                        </p>
+                        <a href="courses.html?course=python" class="w-full py-3 rounded-lg font-semibold text-white btn-gradient transition inline-flex justify-center items-center">
+                            Start Course
+                        </a>
+                    </div>
+
+                    <!-- C Programming Card -->
+                    <div class="p-8 rounded-xl bg-gray-800 card-glow transition duration-300 transform">
+                        <!-- REPLACED EMOJI WITH LUCIDE ICON -->
+                        <span data-lucide="computer" class="w-10 h-10 text-blue-400 mx-auto mb-4"></span>
+                        <h3 class="text-2xl font-bold mb-3">C Fundamentals</h3>
+                        <p class="text-gray-400 mb-6">
+                            Master C fundamentals, data structures for system programming.
+                        </p>
+                        <a href="courses.html?course=c" class="w-full py-3 rounded-lg font-semibold text-white btn-gradient transition inline-flex justify-center items-center">
+                            Start Course
+                        </a>
+                    </div>
+
+                    <!-- Java Card (Replaces SQL) -->
+                    <div class="p-8 rounded-xl bg-gray-800 card-glow transition duration-300 transform">
+                        <!-- REPLACED SQL ICON WITH JAVA ICON -->
+                        <span data-lucide="coffee" class="w-10 h-10 text-orange-400 mx-auto mb-4"></span>
+                        <h3 class="text-2xl font-bold mb-3">Java Programming</h3>
+                        <p class="text-gray-400 mb-6">
+                            Build large-scale apps with Java. Master OOP concepts and the Spring framework.
+                        </p>
+                        <a href="courses.html?course=java" class="w-full py-3 rounded-lg font-semibold text-white btn-gradient transition inline-flex justify-center items-center">
+                            Start Course
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose SyntaxLab Section -->
+        <section class="py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-center mb-16 reveal">
+                    Why Choose SyntaxLab?
+                </h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+                    <!-- Feature 1: Google Cloud -->
+                    <div class="p-6 rounded-xl bg-gray-800 text-center hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+                        <span data-lucide="cloud" class="w-10 h-10 text-cyan-400 mx-auto mb-4"></span>
+                        <h3 class="text-xl font-semibold mb-2">Google Cloud Ready</h3>
+                        <p class="text-gray-400 text-sm">Build and deploy scalable applications on Google Cloud Platform.</p>
+                    </div>
+
+                    <!-- Feature 2: Firebase Integration -->
+                    <div class="p-6 rounded-xl bg-gray-800 text-center hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+                        <span data-lucide="bolt" class="w-10 h-10 text-yellow-400 mx-auto mb-4"></span>
+                        <h3 class="text-xl font-semibold mb-2">Firebase Integration</h3>
+                        <p class="text-gray-400 text-sm">Power your apps with Firebase's realtime database and authentication.</p>
+                    </div>
+
+                    <!-- Feature 3: AI Recommendations (Vertex AI) -->
+                    <div class="p-6 rounded-xl bg-gray-800 text-center hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+                        <span data-lucide="brain-circuit" class="w-10 h-10 text-green-400 mx-auto mb-4"></span>
+                        <h3 class="text-xl font-semibold mb-2">AI-Driven Learning</h3>
+                        <p class="text-gray-400 text-sm">Personalized course paths and practice problems powered by Vertex AI recommendations.</p>
+                    </div>
+
+                    <!-- Feature 4: Modern Frontend -->
+                    <div class="p-6 rounded-xl bg-gray-800 text-center hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+                        <span data-lucide="layout-template" class="w-10 h-10 text-pink-400 mx-auto mb-4"></span>
+                        <h3 class="text-xl font-semibold mb-2">Modern Frontend</h3>
+                        <p class="text-gray-400 text-sm">Master React and modern web development for beautiful UIs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community & Practice Section -->
+        <section id="practice" class="py-20 bg-gray-900 border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-4xl font-extrabold mb-4">
+                        Join the Global Coding Community
+                    </h2>
+                    <p class="text-xl text-gray-400">
+                        Connect with 1000+ learners practicing daily.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 reveal">
+                    <!-- LeetCode Card -->
+                    <a href="https://leetcode.com" target="_blank" class="p-8 rounded-xl bg-gray-800 card-glow transition duration-300 flex flex-col justify-center items-center text-center">
+                        <!-- REPLACED IMAGE WITH LUCIDE ICON -->
+                        <span data-lucide="swords" class="w-10 h-10 text-cyan-400 mb-4"></span>
+                        <h3 class="text-2xl font-bold mb-2">Challenge Yourself</h3>
+                        <p class="text-gray-400">Solve complex algorithms and interview-style questions.</p>
+                    </a>
+
+                    <!-- CodeChef Card -->
+                    <a href="https://www.codechef.com" target="_blank" class="p-8 rounded-xl bg-gray-800 card-glow transition duration-300 flex flex-col justify-center items-center text-center">
+                        <!-- REPLACED IMAGE WITH LUCIDE ICON -->
+                        <span data-lucide="award" class="w-10 h-10 text-pink-400 mb-4"></span>
+                        <h3 class="text-2xl font-bold mb-2">Competitive Programming</h3>
+                        <p class="text-gray-400">Participate in global contests and climb the ranks.</p>
+                    </a>
+
+                    <!-- Internal Progress Tracking -->
+                    <div class="p-8 rounded-xl bg-gray-800 border-2 border-dashed border-gray-700 flex flex-col justify-center items-center text-center">
+                        <span data-lucide="bar-chart-3" class="w-10 h-10 text-cyan-400 mb-4"></span>
+                        <h3 class="text-2xl font-bold mb-2">Track Your Progress</h3>
+                        <p class="text-gray-400">All your external activity tracks seamlessly inside your SyntaxLab dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Placeholder Section -->
+        <section id="profile" class="py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center p-12 rounded-xl bg-gray-800 border border-gray-700 reveal">
+                    <span data-lucide="user-circle" class="w-12 h-12 text-pink-400 mx-auto mb-4"></span>
+                    <h2 class="text-4xl font-extrabold mb-4">
+                        User Profile Dashboard
+                    </h2>
+                    <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                        This is where your personalized data, certificates, and learning path details will be displayed.
+                    </p>
+                    <a href="userdashboard.html" class="px-8 py-3 rounded-full font-bold text-lg text-white btn-gradient transform hover:scale-105 inline-flex items-center gap-2">
+                        Go to Profile Settings
+                        <span data-lucide="settings" class="w-5 h-5"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AI Zone Section -->
+        <section id="ai" class="py-20 lg:py-32 bg-gray-900 border-t border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-12">
+                    <div class="lg:w-1/2 reveal">
+                        <h2 class="text-4xl font-extrabold mb-4">
+                            The AI Zone: Code Generation & Debugging
+                        </h2>
+                        <p class="text-xl text-gray-400 mb-8">
+                            Leverage powerful AI tools to instantly debug code, generate boilerplates, and understand complex concepts with interactive assistants.
+                        </p>
+                        <a href="AIzonehome.html" class="px-8 py-3 rounded-full font-bold text-lg text-white btn-gradient transform hover:scale-105 inline-flex items-center gap-2">
+                            Explore AI Tools
+                            <span data-lucide="sparkles" class="w-5 h-5"></span>
+                        </a>
+                    </div>
+
+                    <div class="lg:w-1/2 p-8 rounded-xl bg-gray-800 shadow-2xl reveal border border-gray-700">
+                        <!-- Mockup of AI Code Editor -->
+                        <div class="bg-black rounded-lg p-4 font-mono text-sm text-green-300">
+                            <p>// AI Assistant: Debugging Python function...</p>
+                            <pre class="mt-2 text-gray-200">
+<span class="text-cyan-400">def</span> calculate_bmi(weight_kg, height_cm):
+    <span class="text-gray-500"># Bug: height was in cm, should be in meters.</span>
+    <span class="text-red-400">height_m = height_cm / 100 </span>
+    <span class="text-yellow-400">if</span> height_m == 0:
+        <span class="text-red-400">return</span> <span class="text-orange-400">"Invalid Height"</span>
+    <span class="text-cyan-400">return</span> weight_kg / (height_m ** 2)
+                            </pre>
+                            <p class="mt-4 text-green-400 font-semibold">
+                                &gt; Status: Code fixed and optimized.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button (New Addition) -->
+    <button id="backToTopBtn" class="fixed bottom-6 right-6 p-4 rounded-full text-white shadow-lg z-50 opacity-0 transition-opacity duration-300 btn-gradient">
+        <span data-lucide="chevron-up" class="w-6 h-6"></span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 mt-12 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                <!-- Logo & Text -->
+                <div class="col-span-2 lg:col-span-1">
+                    <h3 class="text-3xl font-extrabold logo-gradient tracking-tight mb-4">
+                        SyntaxLab
+                    </h3>
+                    <p class="text-gray-500 text-sm">Code Mastery, Accelerated.</p>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Platform</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="courses.html" class="hover:text-cyan-400 transition">Courses</a></li>
+                        <li><a href="#practice" class="hover:text-cyan-400 transition">Practice Arena</a></li>
+                        <li><a href="userdashboard.html" class="hover:text-cyan-400 transition">Profile</a></li>
+                        <li><a href="AIzonehome.html" class="hover:text-cyan-400 transition">AI Zone</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Company</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="aboutus.html" class="hover:text-cyan-400 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 3 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Legal</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="text-lg font-semibold mb-4 text-white">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+                            <span data-lucide="github" class="w-6 h-6"></span>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+                            <span data-lucide="linkedin" class="w-6 h-6"></span>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+                            <span data-lucide="youtube" class="w-6 h-6"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                © 2025 SyntaxLab — Built with Power Platform & AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK for Logout -->
+    
+  <!-- Common JS -->
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+
+
+
+    <!-- JavaScript for Scroll Reveal, Icon Initialization, and Back to Top -->
+    
+</body>
+</html>

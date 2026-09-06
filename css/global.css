@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Global Variables & Base Styles
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    /* Brand Colors */
+    --color-primary: #00bcd4; /* Cyan */
+    --color-secondary: #ff4081; /* Pink */
+    --primary: #00ffe0; /* Bright Cyan Variant */
+    --accent: #ff00ff; /* Bright Magenta Variant */
+    
+    /* Backgrounds */
+    --color-dark-bg: #0d1117; /* GitHub Dark */
+    --color-card-bg: #161b22;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    background-color: var(--color-dark-bg);
+    color: #e6e6e6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}

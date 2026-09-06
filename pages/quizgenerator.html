@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quizzes - SyntaxLab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="AIzonehome.html" class="text-3xl font-extrabold logo-gradient tracking-tight">SyntaxLab ⚡</a>
+            <div class="hidden lg:flex space-x-6 text-gray-400 font-medium">
+                <a href="AIzonehome.html" class="hover:text-white transition-colors duration-200">← Back to AI Zone</a>
+            </div>
+            <a href="../index.html" class="px-6 py-2 rounded-full font-semibold text-white transition-all duration-300 btn-gradient">Logout</a>
+        </nav>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">
+                <span class="logo-gradient">AI-Generated Quiz</span>
+            </h1>
+            <p class="text-gray-400" id="topicDisplay">Loading your quiz...</p>
+        </div>
+
+        <div id="loadingState" class="flex flex-col items-center justify-center py-20">
+            <div class="spinner mb-4"></div>
+            <p class="text-gray-400 text-lg">Generating quiz with Gemini AI...</p>
+            <p class="text-gray-500 text-sm mt-2">This may take a few seconds</p>
+        </div>
+
+        <div id="errorState" class="hidden bg-red-900/20 border-2 border-red-500 rounded-lg p-8 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h2 class="text-2xl font-bold text-red-400 mb-2">Oops! Something went wrong</h2>
+            <p class="text-gray-400 mb-6" id="errorMessage"></p>
+            <button onclick="window.location.href='AIzonehome.html'" class="btn-gradient px-6 py-3 rounded-lg font-semibold">Try Again</button>
+        </div>
+
+        <div id="quizContainer" class="hidden space-y-6"></div>
+
+    </div>
+
+    
+  <!-- Common JS -->
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+<script src="../js/quiz.js"></script>
+
+</body>
+</html>
