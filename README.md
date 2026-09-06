@@ -13,14 +13,14 @@
 </p>
 
 <p align="center">
-  <a href="https://borrakarthik509.github.io/syntaxlab-ai-learning-platform/">
-    <img src="https://img.shields.io/badge/Live_Demo-borrakarthik509.github.io-2EA44F?style=for-the-badge&logo=github&logoColor=white" alt="Live Demo" />
+  <a href="https://sriharshamedapati.github.io/SyntaxLab/">
+    <img src="https://img.shields.io/badge/Live_Demo-sriharshamedapati.github.io/SyntaxLab/-2EA44F?style=for-the-badge&logo=github&logoColor=white" alt="Live Demo" />
   </a>
 </p>
 
 ## 🔗 Live Demo
 
-**[https://borrakarthik509.github.io/syntaxlab-ai-learning-platform/](https://borrakarthik509.github.io/syntaxlab-ai-learning-platform/)**
+**[https://sriharshamedapati.github.io/SyntaxLab/](https://sriharshamedapati.github.io/SyntaxLab/)**
 
 > Hosted on GitHub Pages. The deployed domain is registered in Firebase Authentication's authorized domains list, so login and signup work directly on the live site.
 
@@ -57,7 +57,7 @@
 | **Icons & Charts** | Lucide Icons, Chart.js (Dashboard visualizations) |
 | **Authentication** | Firebase Auth (Email/Password, Custom Token, Anonymous) |
 | **Database** | Firebase Firestore (Two distinct projects) |
-| **Live Hosting** | [GitHub Pages](https://borrakarthik509.github.io/syntaxlab-ai-learning-platform/) |
+| **Live Hosting** | [GitHub Pages](https://sriharshamedapati.github.io/SyntaxLab/) |
 
 ## ✨ Features
 
@@ -206,7 +206,7 @@ The frontend comes pre-configured with the necessary API keys for both Firebase 
 
 ## 🌐 Deployment
 
-This application is live on **GitHub Pages** at [sriharshamedapati/SyntaxLab](https://github.com/sriharshamedapati/SyntaxLab). It also includes a `firebase.json`, so it is compatible with Firebase Hosting as an alternative deploy target.
+This application is live on **GitHub Pages** at [sriharshamedapati.github.io/SyntaxLab/](https://sriharshamedapati.github.io/SyntaxLab/). It also includes a `firebase.json`, so it is compatible with Firebase Hosting as an alternative deploy target.
 
 **Crucial GitHub Pages Step:**
 If forking or redeploying this project to a different GitHub Pages domain, that new domain **must** be added to the Firebase Console:
